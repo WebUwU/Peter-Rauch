@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Peter Rauch – „Nichts übrig – Von der Gosse nach CoastV“</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="img/header.png" alt="Header Bild">
+    <h1>Peter Rauch</h1>
+    <h2>„Nichts übrig – Von der Gosse nach CoastV“</h2>
+  </header>
+  <main>
+    <section class="bio" id="bio-text">
+      <p>Lade Text ...</p>
+    </section>
+  </main>
+  <footer>
+    <span>© 2025 Peter Rauch / CoastV</span>
+  </footer>
+  <script>
+    fetch('bio.txt')
+      .then(response => response.text())
+      .then(text => {
+        // Text als HTML einfügen, Zeilenumbrüche berücksichtigen
+        document.getElementById('bio-text').innerHTML =
+          text.replace(/\n/g, '<br>');
+      })
+      .catch(() => {
+        document.getElementById('bio-text').innerHTML =
+          "<p>Konnte die Biografie nicht laden.</p>";
+      });
+  </script>
+</body>
+</html>
