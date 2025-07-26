@@ -2,71 +2,58 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Peter Rauch – „Nichts übrig – Von der Gosse nach CoastV“</title>
+  <title>Peter Rauch – Auswahl</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="img/header.png" alt="Header Bild">
-    <h1>Peter Rauch</h1>
-    <h2>„Nichts übrig – Von der Gosse nach CoastV“</h2>
-  </header>
   <main>
-    <div class="window-row">
-      <div class="window-btn" id="bio-btn">Autobiografie</div>
-      <div class="window-btn" id="lounge-btn">Lounge</div>
+    <div class="card-container">
+      <div class="card" id="card-bio" onclick="showContent('bio')">
+        <img src="img/autobiografie.png" alt="Autobiografie">
+        <h2>Autobiografie</h2>
+        <p>Kurzbeschreibung oder Teasertext<br>(z.B. „Von der Gosse nach CoastV“)</p>
+      </div>
+      <div class="card" id="card-lounge" onclick="showContent('lounge')">
+        <img src="img/lounge.png" alt="Lounge">
+        <h2>Lounge</h2>
+        <p>Extra Bereich mit Vertrag zum Download.<br>(z.B. „Treffpunkt, Infos & mehr“)</p>
+      </div>
     </div>
-    <section class="content-section" id="bio-content">
-      <p>Lade Text ...</p>
-    </section>
-    <section class="content-section" id="lounge-content" style="display:none;">
-      <p>Lade Text ...</p>
-      <div class="pdf-download" style="display:none;">
+    <div class="big-content" id="big-bio" style="display:none;">
+      <button class="close-btn" onclick="closeContent()">✕</button>
+      <h2>Autobiografie</h2>
+      <div class="big-text" id="bio-text">Lädt...</div>
+    </div>
+    <div class="big-content" id="big-lounge" style="display:none;">
+      <button class="close-btn" onclick="closeContent()">✕</button>
+      <h2>Lounge</h2>
+      <div class="big-text" id="lounge-text">Lädt...</div>
+      <div class="pdf-download">
         <a href="files/vertrag.pdf" download>📄 Vertrag herunterladen</a>
       </div>
-    </section>
+    </div>
   </main>
-  <footer>
-    <span>© 2025 Peter Rauch / CoastV</span>
-  </footer>
   <script>
-    // Buttons
-    const bioBtn = document.getElementById('bio-btn');
-    const loungeBtn = document.getElementById('lounge-btn');
-    const bioContent = document.getElementById('bio-content');
-    const loungeContent = document.getElementById('lounge-content');
-    // Laden der Inhalte
-    function loadContent(file, container, showPdf=false) {
-      fetch(file)
-        .then(r => r.text())
-        .then(text => {
-          container.innerHTML = text.replace(/\n/g, '<br>');
-          if (showPdf) {
-            container.innerHTML += `<div class="pdf-download"><a href="files/vertrag.pdf" download>📄 Vertrag herunterladen</a></div>`;
-          }
-        }).catch(() => {
-          container.innerHTML = "<p>Konnte Inhalt nicht laden.</p>";
-        });
+    function showContent(which) {
+      document.getElementById('big-bio').style.display = 'none';
+      document.getElementById('big-lounge').style.display = 'none';
+      if (which === 'bio') {
+        document.getElementById('big-bio').style.display = 'block';
+        fetch('bio.txt').then(r=>r.text()).then(t=>{
+          document.getElementById('bio-text').innerHTML = t.replace(/\n/g, "<br>");
+        }).catch(()=>{document.getElementById('bio-text').innerHTML = "Fehler beim Laden."});
+      } else if (which === 'lounge') {
+        document.getElementById('big-lounge').style.display = 'block';
+        fetch('lounge.txt').then(r=>r.text()).then(t=>{
+          document.getElementById('lounge-text').innerHTML = t.replace(/\n/g, "<br>");
+        }).catch(()=>{document.getElementById('lounge-text').innerHTML = "Fehler beim Laden."});
+      }
     }
-    // Events
-    bioBtn.onclick = () => {
-      bioBtn.classList.add('active');
-      loungeBtn.classList.remove('active');
-      bioContent.style.display = '';
-      loungeContent.style.display = 'none';
-      loadContent('bio.txt', bioContent);
+    function closeContent() {
+      document.getElementById('big-bio').style.display = 'none';
+      document.getElementById('big-lounge').style.display = 'none';
     }
-    loungeBtn.onclick = () => {
-      bioBtn.classList.remove('active');
-      loungeBtn.classList.add('active');
-      bioContent.style.display = 'none';
-      loungeContent.style.display = '';
-      loadContent('lounge.txt', loungeContent, true);
-    }
-    // Autoload Bio beim Start
-    bioBtn.classList.add('active');
-    loadContent('bio.txt', bioContent);
   </script>
 </body>
 </html>
