@@ -101,8 +101,8 @@ body {
   line-height: 1.75;
   box-shadow: 0 8px 36px #0006;
   color: #eee;
-  text-align: left;
-  display: flex;
+  text-align: center;
+  display: block;
   flex-direction: column;
   justify-content: center;
   align-items: center;
