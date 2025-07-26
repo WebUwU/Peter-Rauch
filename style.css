@@ -41,12 +41,12 @@ body {
   border: 2.5px solid #e24f4f;
 }
 .card img {
-  width: 95px;
-  height: 95px;
+  width: 170px;
+  height: 170px;
   object-fit: contain;
   margin-bottom: 1.5rem;
   background: #191a1c;
-  border-radius: 18px;
+  border-radius: 24px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -66,6 +66,41 @@ body {
   font-weight: 500;
   line-height: 1.6;
   max-width: 370px;
+}
+
+/* --- Musikplayer --- */
+.music-player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin: 2.5rem auto 0 auto;
+  padding: 1.2rem 2rem;
+  background: #23272a;
+  border-radius: 20px;
+  width: max-content;
+  box-shadow: 0 6px 22px #0006;
+}
+
+.music-player button {
+  background: #e24f4f;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5rem 0.8rem;
+  font-size: 1.32rem;
+  cursor: pointer;
+  transition: background 0.17s;
+}
+.music-player button:hover {
+  background: #c73a3a;
+}
+.music-player input[type="range"] {
+  accent-color: #e24f4f;
+  width: 110px;
+  margin-left: 7px;
+  margin-right: 7px;
+  vertical-align: middle;
 }
 
 /* --- Popup Big Content --- */
@@ -94,8 +129,6 @@ body {
   padding: 2.7rem 2.5rem;
   border-radius: 18px;
   max-width: 600px;
-  min-width: 340px;
-  min-height: 270px;
   margin-bottom: 2rem;
   font-size: 1.21rem;
   line-height: 1.75;
@@ -105,6 +138,7 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  overflow-wrap: anywhere;
 }
 .big-text p {
   margin: 0 0 1em 0;
@@ -155,4 +189,5 @@ body {
   .card-container { flex-direction: column; align-items: center; gap: 4vh;}
   .card { width: 98vw; min-width: 0; height: 340px;}
   .big-text { padding: 1.2rem 1.1rem; min-width: 0; width: 96vw;}
+  .music-player { flex-direction: column; width: 100vw; gap: 0.6rem;}
 }
