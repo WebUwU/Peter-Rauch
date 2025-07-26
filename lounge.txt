@@ -1,1 +1,110 @@
+Konzept: Rauch’s Lounge
+Art der Fraktion: Legales Einzelunternehmen
+Betreiber: Einzelperson (Start = 1 Mann)
+Ort: Innenstadt oder angrenzendes Gebiet, diskreter Zugang
+Schwerpunkt: Poker mit Bargeld, Kreditvergabe, gehobene Drinks
+Zielgruppe: Spieler mit Stil, Schulden, Einfluss oder Problemen
 
+1. Grundidee
+Rauch’s Lounge ist eine geschlossene, elegante Pokerbar mit diskretem Umfeld und klarem Fokus: Hier wird ausschließlich Texas Hold’em mit echtem Bargeld gespielt. Es gibt keine Chips, keine Automaten, keine Glücksspielmechaniken. Gespielt wird direkt, ehrlich, bar auf den Tisch – unter Aufsicht, geregelt, aber ohne digitale UI. Die Atmosphäre ist bewusst ruhig, leicht rauchig, reduziert und erwachsen.
+
+Die Bar richtet sich an eine Zielgruppe, die das klassische Casino meidet: Leute, die nicht gesehen werden wollen, die lieber in kleinem Kreis spielen, hohe Summen setzen oder einfach nur das Gespräch suchen – nicht das Event. Die Lounge soll nicht durch Masse funktionieren, sondern durch Qualität, Diskretion und Einfluss.
+
+2. Abgrenzung zum Casino
+Obwohl es bereits ein öffentlich zugängliches Casino auf dem Server gibt, erfüllt Rauch’s Lounge einen ganz anderen Zweck:
+
+Keine offene Spielfläche, sondern Zugang nur auf Einladung oder über Kontakte
+
+Kein Glücksspiel in Masse, sondern gezielte, kontrollierte Runden
+
+Kein Lautstärke-RP oder Eventcharakter, sondern Fokus auf Charakterspiel und Entscheidungs-RP
+
+Kein Roulette, Blackjack oder Automatensystem, sondern ausschließlich Texas Hold’em
+
+Deutlich kleinere, selektive Gruppen, was gezieltes RP fördert
+
+Individuelle Spielführung durch den Betreiber, später durch vertraute Croupiers
+
+Die Lounge konkurriert nicht mit dem Casino – sie füllt eine Lücke im RP zwischen legalem Glücksspiel, gefährlichen Deals und tiefem Story-RP.
+
+3. Pokerbetrieb
+Gespielt wird ausschließlich Texas Hold’em
+
+Einsätze erfolgen mit Bargeld, keine virtuellen Chips oder Interfaces
+
+Spiele finden nur statt, wenn mindestens 2–6 Spieler anwesend sind und der Betreiber die Runde freigibt
+
+Spielleitung erfolgt anfangs durch den Betreiber selbst (später evtl. Croupiers)
+
+2 % des Gewinns jedes Spielers gehen automatisch als Hausanteil ans Lounge-Konto (RP-geregelt)
+
+Buy-Ins, Limits und Auszahlungsmodalitäten werden vor Spielbeginn besprochen und per RP geregelt
+
+4. Getränkeangebot
+Keine Standard-Bar, sondern gezieltes, hochwertiges Getränkeangebot
+
+Ausschließlich: Whiskey, Cognac, Martini, Gin, Wein
+
+Getränke haben keine Buffs, dienen nur als RP-Element
+
+Spielende Gäste trinken gratis
+
+Besucher ohne Spieleinsatz zahlen pro Glas (z. B. 150–300 $ pro Drink)
+
+Barkeeper sind nicht klassisch besetzt, sondern Teil des RP-Personals
+
+5. Kreditvergabe
+Die Lounge bietet legale, schriftlich dokumentierte Kredite an, wenn Spieler über kein Bargeld verfügen. Diese werden bewusst als "grau, aber zulässig" geführt – keine OOC-Mechanik, sondern rein RP-basiert mit deutlichen Spielregeln.
+
+Konditionen:
+
+Kredite ab 2.000 $ aufwärts
+
+Vertragsabschluss per /me und ggf. schriftlicher Dokumentation
+
+Rückzahlung innerhalb von 48–72 Stunden (Ingame-Zeit, RP-verbindlich)
+
+Zinssätze zwischen 10 % und 40 %
+
+Absicherung optional über Sachwerte (Fahrzeuge, Schmuck, Besitznachweis)
+
+Keine Power-RP-Mittel bei Verzug – aber Folge-RP in Form von Druck, Gesprächen oder Übergabe an Dritte (z. B. Fraktionen oder selbst ernannte "Schlichter")
+
+6. Struktur & Personal
+Aktuell handelt es sich um eine reine Einzelunternehmer-Fraktion. Es gibt keine Bewerbungsphasen, sondern Aufbau über Vertrauen und RP.
+
+Geplante Rollen (mittelfristig):
+
+Betreiber (Inhaber, Spielleiter, Kreditgeber)
+
+Croupier (neutral, professionell, nicht bestechlich)
+
+Barkeeper (Gastgeberrolle, kein klassischer Verkäufer)
+
+Kontaktpersonen / Externe für Schuldenabwicklung (frei bespielbar)
+
+7. Langfristige Ziele
+Aufbau eines festen RP-Kerns um die Lounge
+
+Turniere mit festen Buy-Ins & Langzeitbindung (z. B. Ranglisten, Rückspiele)
+
+Etablierung als Ort für "Deals hinter verschlossenen Türen"
+
+Story-Verbindungen zu Polizei, Wirtschaft, Gangs, Politik – über Spielschulden, Kredite oder RP-Verstrickungen
+
+Aufbau von Vertrauenshierarchien statt OOC-Anmeldungen – Spieler sollen sich ihren Zugang erspielen
+
+Integration in Server-Storylines als neutraler, aber gefährlicher Treffpunkt für Informationen, Erpressungen, Allianzen und Verluste
+
+8. RP-Nutzen für den Server
+Neuer Ort für ruhiges, ernstes, geldgetriebenes RP
+
+Konflikte entstehen durch Entscheidungen, nicht durch Waffen
+
+Kreditvergabe erzeugt langfristige Charakterbindungen und Druck
+
+Platz für Storytelling, Doppelleben, Machtspiele, Bestechung
+
+Bietet Zugang für Spieler, die kein Interesse an Event-RP oder Ballerei haben
+
+Klar regelbarer Betrieb ohne Exploitpotenzial oder Mechaniküberlastung
