@@ -20,6 +20,17 @@
         <p>Extra Bereich mit Vertrag zum Download.<br>(z.B. „Treffpunkt, Infos & mehr“)</p>
       </div>
     </div>
+
+    <!-- Musikplayer unter den Cards, mittig -->
+    <div class="music-player">
+      <audio id="audio-player" src="music/music.mp3"></audio>
+      <button onclick="playAudio()">▶️</button>
+      <button onclick="pauseAudio()">⏸️</button>
+      <button onclick="stopAudio()">⏹️</button>
+      <input type="range" min="0" max="1" step="0.01" value="0.6" id="volume-slider" title="Lautstärke">
+      <span id="current-time">00:00</span> / <span id="duration">00:00</span>
+    </div>
+
     <div class="big-content" id="big-bio" style="display:none;">
       <button class="close-btn" onclick="closeContent()">✕</button>
       <h2>Autobiografie</h2>
@@ -35,6 +46,7 @@
     </div>
   </main>
   <script>
+    // TEXT FORMATIERUNG
     function showContent(which) {
       document.getElementById('big-bio').style.display = 'none';
       document.getElementById('big-lounge').style.display = 'none';
@@ -42,19 +54,51 @@
         document.getElementById('big-bio').style.display = 'flex';
         fetch('bio.txt').then(r=>r.text()).then(t=>{
           document.getElementById('bio-text').innerHTML =
-            t.split('\n').map(l => `<p>${l}</p>`).join('');
+            t.split(/\n\s*\n/).map(paragraph =>
+              `<p>${paragraph.replace(/\n/g, '<br>')}</p>`
+            ).join('');
         }).catch(()=>{document.getElementById('bio-text').innerHTML = "Fehler beim Laden."});
       } else if (which === 'lounge') {
         document.getElementById('big-lounge').style.display = 'flex';
         fetch('lounge.txt').then(r=>r.text()).then(t=>{
           document.getElementById('lounge-text').innerHTML =
-            t.split('\n').map(l => `<p>${l}</p>`).join('');
+            t.split(/\n\s*\n/).map(paragraph =>
+              `<p>${paragraph.replace(/\n/g, '<br>')}</p>`
+            ).join('');
         }).catch(()=>{document.getElementById('lounge-text').innerHTML = "Fehler beim Laden."});
       }
     }
     function closeContent() {
       document.getElementById('big-bio').style.display = 'none';
       document.getElementById('big-lounge').style.display = 'none';
+    }
+
+    // MUSIKPLAYER
+    const audio = document.getElementById('audio-player');
+    const slider = document.getElementById('volume-slider');
+    const currentTime = document.getElementById('current-time');
+    const duration = document.getElementById('duration');
+    audio.volume = slider.value;
+
+    function playAudio() { audio.play(); }
+    function pauseAudio() { audio.pause(); }
+    function stopAudio() { audio.pause(); audio.currentTime = 0; }
+
+    slider.addEventListener('input', function() {
+      audio.volume = this.value;
+    });
+
+    audio.addEventListener('loadedmetadata', () => {
+      duration.textContent = formatTime(audio.duration);
+    });
+    audio.addEventListener('timeupdate', () => {
+      currentTime.textContent = formatTime(audio.currentTime);
+    });
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
     }
   </script>
 </body>
