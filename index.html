@@ -1,60 +1,72 @@
-.window-row {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
-  margin-top: 1.5rem;
-}
-.window-btn {
-  flex: 1 1 0px;
-  max-width: 240px;
-  background: #23272b;
-  color: #e3e3e3;
-  border-radius: 18px 18px 0 0;
-  padding: 1.1rem;
-  font-size: 1.22rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-align: center;
-  cursor: pointer;
-  transition: background 0.22s, color 0.22s, box-shadow 0.15s;
-  box-shadow: 0 2px 8px #0002;
-  border: 2px solid transparent;
-}
-.window-btn.active, .window-btn:hover {
-  background: #353b40;
-  color: #e24f4f;
-  border-color: #e24f4f;
-  box-shadow: 0 6px 20px #0002;
-}
-.content-section {
-  max-width: 700px;
-  margin: auto;
-  background: #23272a;
-  border-radius: 0 0 22px 22px;
-  box-shadow: 0 4px 24px #0003;
-  padding: 2rem;
-  font-size: 1.07rem;
-  line-height: 1.7;
-  display: block;
-  min-height: 200px;
-  word-break: break-word;
-}
-.pdf-download {
-  margin-top: 2rem;
-  text-align: center;
-}
-.pdf-download a {
-  display: inline-block;
-  padding: 0.7rem 1.5rem;
-  background: #e24f4f;
-  color: #fff;
-  border-radius: 13px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: background 0.22s;
-}
-.pdf-download a:hover {
-  background: #c73a3a;
-}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Peter Rauch – „Nichts übrig – Von der Gosse nach CoastV“</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="img/header.png" alt="Header Bild">
+    <h1>Peter Rauch</h1>
+    <h2>„Nichts übrig – Von der Gosse nach CoastV“</h2>
+  </header>
+  <main>
+    <div class="window-row">
+      <div class="window-btn" id="bio-btn">Autobiografie</div>
+      <div class="window-btn" id="lounge-btn">Lounge</div>
+    </div>
+    <section class="content-section" id="bio-content">
+      <p>Lade Text ...</p>
+    </section>
+    <section class="content-section" id="lounge-content" style="display:none;">
+      <p>Lade Text ...</p>
+      <div class="pdf-download" style="display:none;">
+        <a href="files/vertrag.pdf" download>📄 Vertrag herunterladen</a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <span>© 2025 Peter Rauch / CoastV</span>
+  </footer>
+  <script>
+    // Buttons
+    const bioBtn = document.getElementById('bio-btn');
+    const loungeBtn = document.getElementById('lounge-btn');
+    const bioContent = document.getElementById('bio-content');
+    const loungeContent = document.getElementById('lounge-content');
+    // Laden der Inhalte
+    function loadContent(file, container, showPdf=false) {
+      fetch(file)
+        .then(r => r.text())
+        .then(text => {
+          container.innerHTML = text.replace(/\n/g, '<br>');
+          if (showPdf) {
+            container.innerHTML += `<div class="pdf-download"><a href="files/vertrag.pdf" download>📄 Vertrag herunterladen</a></div>`;
+          }
+        }).catch(() => {
+          container.innerHTML = "<p>Konnte Inhalt nicht laden.</p>";
+        });
+    }
+    // Events
+    bioBtn.onclick = () => {
+      bioBtn.classList.add('active');
+      loungeBtn.classList.remove('active');
+      bioContent.style.display = '';
+      loungeContent.style.display = 'none';
+      loadContent('bio.txt', bioContent);
+    }
+    loungeBtn.onclick = () => {
+      bioBtn.classList.remove('active');
+      loungeBtn.classList.add('active');
+      bioContent.style.display = 'none';
+      loungeContent.style.display = '';
+      loadContent('lounge.txt', loungeContent, true);
+    }
+    // Autoload Bio beim Start
+    bioBtn.classList.add('active');
+    loadContent('bio.txt', bioContent);
+  </script>
+</body>
+</html>
