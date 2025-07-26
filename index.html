@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <!-- Musikplayer: moderner, mittig, autoplay -->
+    <!-- Musikplayer: modern, mittig, autoplay -->
     <div class="music-player" id="music-player">
       <audio id="audio-player" src="music/music.mp3" preload="auto"></audio>
       <button id="play-btn" title="Play/Pause">▶️</button>
@@ -56,6 +56,7 @@
   <script>
     // --- POPUP TEXT RICHTIG FORMATIEREN ---
     function showContent(which) {
+      document.body.style.overflow = "hidden"; // Popup: Body-Scroll verhindern
       document.getElementById('big-bio').style.display = 'none';
       document.getElementById('big-lounge').style.display = 'none';
       if (which === 'bio') {
@@ -79,6 +80,7 @@
     function closeContent() {
       document.getElementById('big-bio').style.display = 'none';
       document.getElementById('big-lounge').style.display = 'none';
+      document.body.style.overflow = ""; // Body wieder scrollbar
     }
 
     // --- MUSIKPLAYER ---
@@ -91,7 +93,18 @@
     const volumeIcon = document.getElementById('volume-icon');
 
     let isPlaying = false;
-    // Versucht automatisch abzuspielen, aber funktioniert nur nach User-Interaktion (Browser-Schutz!)
+
+    // Dauer immer wieder abfragen bis sie stimmt
+    function fixDuration() {
+      if (audio.duration && !isNaN(audio.duration) && audio.duration > 0) {
+        seekBar.max = Math.floor(audio.duration);
+        duration.textContent = formatTime(audio.duration);
+      } else {
+        duration.textContent = "00:00";
+        setTimeout(fixDuration, 200);
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         audio.volume = volumeSlider.value;
@@ -113,11 +126,9 @@
       isPlaying = false;
     });
 
-    // Seekbar
-    audio.addEventListener('loadedmetadata', () => {
-      seekBar.max = Math.floor(audio.duration);
-      duration.textContent = formatTime(audio.duration);
-    });
+    // Seekbar + Zeit
+    audio.addEventListener('loadedmetadata', fixDuration);
+    audio.addEventListener('durationchange', fixDuration);
     audio.addEventListener('timeupdate', () => {
       seekBar.value = Math.floor(audio.currentTime);
       currentTime.textContent = formatTime(audio.currentTime);
@@ -135,6 +146,7 @@
     });
 
     function formatTime(sec) {
+      if (!sec || isNaN(sec) || sec === Infinity) return "00:00";
       const m = Math.floor(sec / 60);
       const s = Math.floor(sec % 60);
       return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
