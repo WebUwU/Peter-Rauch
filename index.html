@@ -39,14 +39,16 @@
       document.getElementById('big-bio').style.display = 'none';
       document.getElementById('big-lounge').style.display = 'none';
       if (which === 'bio') {
-        document.getElementById('big-bio').style.display = 'block';
+        document.getElementById('big-bio').style.display = 'flex';
         fetch('bio.txt').then(r=>r.text()).then(t=>{
-          document.getElementById('bio-text').innerHTML = t.replace(/\n/g, "<br>");
+          document.getElementById('bio-text').innerHTML =
+            t.split('\n').map(l => `<p>${l}</p>`).join('');
         }).catch(()=>{document.getElementById('bio-text').innerHTML = "Fehler beim Laden."});
       } else if (which === 'lounge') {
-        document.getElementById('big-lounge').style.display = 'block';
+        document.getElementById('big-lounge').style.display = 'flex';
         fetch('lounge.txt').then(r=>r.text()).then(t=>{
-          document.getElementById('lounge-text').innerHTML = t.replace(/\n/g, "<br>");
+          document.getElementById('lounge-text').innerHTML =
+            t.split('\n').map(l => `<p>${l}</p>`).join('');
         }).catch(()=>{document.getElementById('lounge-text').innerHTML = "Fehler beim Laden."});
       }
     }
