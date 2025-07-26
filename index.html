@@ -10,43 +10,51 @@
   <main>
     <div class="card-container">
       <div class="card" id="card-bio" onclick="showContent('bio')">
-        <img src="img/autobiografie.png" alt="Autobiografie">
+        <div class="img-holder">
+          <img src="img/autobiografie.png" alt="Autobiografie">
+        </div>
         <h2>Autobiografie</h2>
         <p>Kurzbeschreibung oder Teasertext<br>(z.B. „Von der Gosse nach CoastV“)</p>
       </div>
       <div class="card" id="card-lounge" onclick="showContent('lounge')">
-        <img src="img/lounge.png" alt="Lounge">
+        <div class="img-holder">
+          <img src="img/lounge.png" alt="Lounge">
+        </div>
         <h2>Lounge</h2>
         <p>Extra Bereich mit Vertrag zum Download.<br>(z.B. „Treffpunkt, Infos & mehr“)</p>
       </div>
     </div>
 
-    <!-- Musikplayer unter den Cards, mittig -->
-    <div class="music-player">
-      <audio id="audio-player" src="music/music.mp3"></audio>
-      <button onclick="playAudio()">▶️</button>
-      <button onclick="pauseAudio()">⏸️</button>
-      <button onclick="stopAudio()">⏹️</button>
-      <input type="range" min="0" max="1" step="0.01" value="0.6" id="volume-slider" title="Lautstärke">
+    <!-- Musikplayer: moderner, mittig, autoplay -->
+    <div class="music-player" id="music-player">
+      <audio id="audio-player" src="music/music.mp3" preload="auto"></audio>
+      <button id="play-btn" title="Play/Pause">▶️</button>
+      <input type="range" id="seek-bar" min="0" value="0" step="1">
       <span id="current-time">00:00</span> / <span id="duration">00:00</span>
+      <input type="range" min="0" max="1" step="0.01" value="0.6" id="volume-slider" title="Lautstärke">
+      <span id="volume-icon">🔊</span>
     </div>
 
     <div class="big-content" id="big-bio" style="display:none;">
       <button class="close-btn" onclick="closeContent()">✕</button>
-      <h2>Autobiografie</h2>
-      <div class="big-text" id="bio-text">Lädt...</div>
+      <div class="popup-block">
+        <h2>Autobiografie</h2>
+        <div class="big-text" id="bio-text">Lädt...</div>
+      </div>
     </div>
     <div class="big-content" id="big-lounge" style="display:none;">
       <button class="close-btn" onclick="closeContent()">✕</button>
-      <h2>Lounge</h2>
-      <div class="pdf-download">
-        <a href="files/vertrag.pdf" download>📄 Vertrag herunterladen</a>
+      <div class="popup-block">
+        <h2>Lounge</h2>
+        <div class="pdf-download">
+          <a href="files/vertrag.pdf" download>📄 Vertrag herunterladen</a>
+        </div>
+        <div class="big-text" id="lounge-text">Lädt...</div>
       </div>
-      <div class="big-text" id="lounge-text">Lädt...</div>
     </div>
   </main>
   <script>
-    // TEXT FORMATIERUNG
+    // --- POPUP TEXT RICHTIG FORMATIEREN ---
     function showContent(which) {
       document.getElementById('big-bio').style.display = 'none';
       document.getElementById('big-lounge').style.display = 'none';
@@ -73,26 +81,57 @@
       document.getElementById('big-lounge').style.display = 'none';
     }
 
-    // MUSIKPLAYER
+    // --- MUSIKPLAYER ---
     const audio = document.getElementById('audio-player');
-    const slider = document.getElementById('volume-slider');
+    const playBtn = document.getElementById('play-btn');
+    const seekBar = document.getElementById('seek-bar');
     const currentTime = document.getElementById('current-time');
     const duration = document.getElementById('duration');
-    audio.volume = slider.value;
+    const volumeSlider = document.getElementById('volume-slider');
+    const volumeIcon = document.getElementById('volume-icon');
 
-    function playAudio() { audio.play(); }
-    function pauseAudio() { audio.pause(); }
-    function stopAudio() { audio.pause(); audio.currentTime = 0; }
-
-    slider.addEventListener('input', function() {
-      audio.volume = this.value;
+    let isPlaying = false;
+    // Versucht automatisch abzuspielen, aber funktioniert nur nach User-Interaktion (Browser-Schutz!)
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        audio.volume = volumeSlider.value;
+        audio.play().catch(()=>{});
+      }, 600);
     });
 
+    playBtn.addEventListener('click', () => {
+      if(audio.paused) { audio.play(); }
+      else { audio.pause(); }
+    });
+
+    audio.addEventListener('play', () => {
+      playBtn.textContent = '⏸️';
+      isPlaying = true;
+    });
+    audio.addEventListener('pause', () => {
+      playBtn.textContent = '▶️';
+      isPlaying = false;
+    });
+
+    // Seekbar
     audio.addEventListener('loadedmetadata', () => {
+      seekBar.max = Math.floor(audio.duration);
       duration.textContent = formatTime(audio.duration);
     });
     audio.addEventListener('timeupdate', () => {
+      seekBar.value = Math.floor(audio.currentTime);
       currentTime.textContent = formatTime(audio.currentTime);
+    });
+    seekBar.addEventListener('input', () => {
+      audio.currentTime = seekBar.value;
+    });
+
+    // Volume
+    volumeSlider.addEventListener('input', function() {
+      audio.volume = this.value;
+      if(audio.volume == 0) volumeIcon.textContent = '🔈';
+      else if(audio.volume < 0.5) volumeIcon.textContent = '🔉';
+      else volumeIcon.textContent = '🔊';
     });
 
     function formatTime(sec) {
