@@ -93,7 +93,7 @@ body {
   background: #22272a;
   padding: 2.7rem 2.5rem;
   border-radius: 18px;
-  max-width: 600px;         /* SCHMALER FÜR MITTE */
+  max-width: 600px;
   min-width: 340px;
   min-height: 270px;
   margin-bottom: 2rem;
@@ -107,7 +107,7 @@ body {
   margin-right: auto;
 }
 .big-text p {
-  margin: 0 0 1em 0;   /* Platz zwischen Absätzen */
+  margin: 0 0 1em 0;
 }
 
 .close-btn {
@@ -132,7 +132,7 @@ body {
   background: #c73a3a;
 }
 .pdf-download {
-  margin-top: 2rem;
+  margin-bottom: 2.5rem;
   text-align: center;
 }
 .pdf-download a {
