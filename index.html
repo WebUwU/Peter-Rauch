@@ -1,37 +1,60 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <title>Peter Rauch – „Nichts übrig – Von der Gosse nach CoastV“</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <img src="img/header.png" alt="Header Bild">
-    <h1>Peter Rauch</h1>
-    <h2>„Nichts übrig – Von der Gosse nach CoastV“</h2>
-  </header>
-  <main>
-    <section class="bio" id="bio-text">
-      <p>Lade Text ...</p>
-    </section>
-  </main>
-  <footer>
-    <span>© 2025 Peter Rauch / CoastV</span>
-  </footer>
-  <script>
-    fetch('bio.txt')
-      .then(response => response.text())
-      .then(text => {
-        // Text als HTML einfügen, Zeilenumbrüche berücksichtigen
-        document.getElementById('bio-text').innerHTML =
-          text.replace(/\n/g, '<br>');
-      })
-      .catch(() => {
-        document.getElementById('bio-text').innerHTML =
-          "<p>Konnte die Biografie nicht laden.</p>";
-      });
-  </script>
-</body>
-</html>
+.window-row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+}
+.window-btn {
+  flex: 1 1 0px;
+  max-width: 240px;
+  background: #23272b;
+  color: #e3e3e3;
+  border-radius: 18px 18px 0 0;
+  padding: 1.1rem;
+  font-size: 1.22rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.22s, color 0.22s, box-shadow 0.15s;
+  box-shadow: 0 2px 8px #0002;
+  border: 2px solid transparent;
+}
+.window-btn.active, .window-btn:hover {
+  background: #353b40;
+  color: #e24f4f;
+  border-color: #e24f4f;
+  box-shadow: 0 6px 20px #0002;
+}
+.content-section {
+  max-width: 700px;
+  margin: auto;
+  background: #23272a;
+  border-radius: 0 0 22px 22px;
+  box-shadow: 0 4px 24px #0003;
+  padding: 2rem;
+  font-size: 1.07rem;
+  line-height: 1.7;
+  display: block;
+  min-height: 200px;
+  word-break: break-word;
+}
+.pdf-download {
+  margin-top: 2rem;
+  text-align: center;
+}
+.pdf-download a {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  background: #e24f4f;
+  color: #fff;
+  border-radius: 13px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.22s;
+}
+.pdf-download a:hover {
+  background: #c73a3a;
+}
